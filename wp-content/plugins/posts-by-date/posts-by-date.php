@@ -52,7 +52,7 @@ class PostsByDate
         <div class="container-fluid mt-5">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <h2>Posts By Date</h2>
+                    <h2><?= __('Posts By Date', 'posts-by-date') ?></h2>
                     <?php settings_errors(); ?>
                 </div>
             </div>
@@ -70,28 +70,28 @@ class PostsByDate
                 </div>
                 <div class="col-md-6">
                     <div class="card bg-dark text-light w-100 mt-5 p-0" style="max-width: 100%;">
-                        <h4 class="card-header h2 p-3">Posts Settings</h4>
+                        <h4 class="card-header h2 p-3"><?= __('Posts Settings', 'posts-by-date') ?></h4>
                         <div class="card-body p-5">
-                            <h5 class="card-title h4 mb-4">You will see your posts with these settings:</h5>
+                            <h5 class="card-title h4 mb-4"><?= __('You will see your posts with these settings', 'posts-by-date') ?>:</h5>
                             <table class="table table-borderless">
                                 <tr class="card-text placeholder-glow">
-                                    <th class="align-middle text-light w-50">Category</th>
+                                    <th class="align-middle text-light w-50"><?= __('Category', 'posts-by-date') ?></th>
                                     <td id="category_0_value" class="align-middle py-3"><span class="placeholder col-12 bg-light"></span></td>
                                 </tr>
                                 <tr class="card-text placeholder-glow">
-                                    <th class="align-middle text-light w-50">Date</th>
+                                    <th class="align-middle text-light w-50"><?= __('Date', 'posts-by-date') ?></th>
                                     <td id="date_1_value" class="align-middle py-3"><span class="placeholder col-12 bg-light"></span></td>
                                 </tr>
                                 <tr class="card-text placeholder-glow">
-                                    <th class="align-middle text-light w-50">Limit</th>
+                                    <th class="align-middle text-light w-50"><?= __('Limit', 'posts-by-date') ?></th>
                                     <td id="limit_2_value" class="align-middle py-3"><span class="placeholder col-12 bg-light"></span></td>
                                 </tr>
                                 <tr class="card-text placeholder-glow">
-                                    <th class="align-middle text-light w-50">Order Element</th>
+                                    <th class="align-middle text-light w-50"><?= __('Order Element', 'posts-by-date') ?></th>
                                     <td id="orderby_3_value" class="align-middle py-3"><span class="placeholder col-12 bg-light"></span></td>
                                 </tr>
                                 <tr class="card-text placeholder-glow">
-                                    <th class="align-middle text-light w-50">Sort Order</th>
+                                    <th class="align-middle text-light w-50"><?= __('Sort Order', 'posts-by-date') ?></th>
                                     <td id="order_4_value" class="align-middle py-3"><span class="placeholder col-12 bg-light"></span></td>
                                 </tr>
                             </table>
@@ -113,14 +113,14 @@ class PostsByDate
 
         add_settings_section(
             'posts_by_date_setting_section',
-            '<span class="d-none">Settings</span>',
+            '<span class="d-none">'.__('Settings', 'posts-by-date').'</span>',
             array($this, 'posts_by_date_section_info'),
             'posts-by-date-admin'
         );
 
         add_settings_field(
             'category_0',
-            'Category',
+            __('Category', 'posts-by-date'),
             array($this, 'category_0_callback'),
             'posts-by-date-admin',
             'posts_by_date_setting_section',
@@ -132,7 +132,7 @@ class PostsByDate
 
         add_settings_field(
             'date_1',
-            'Date',
+            __('Date', 'posts-by-date'),
             array($this, 'date_1_callback'),
             'posts-by-date-admin',
             'posts_by_date_setting_section',
@@ -144,7 +144,7 @@ class PostsByDate
 
         add_settings_field(
             'limit_2',
-            'Limit',
+            __('Limit', 'posts-by-date'),
             array($this, 'limit_2_callback'),
             'posts-by-date-admin',
             'posts_by_date_setting_section',
@@ -155,7 +155,7 @@ class PostsByDate
         );
         add_settings_field(
             'orderby_3',
-            'Order By',
+            __('Order By', 'posts-by-date'),
             array($this, 'orderby_3_callback'),
             'posts-by-date-admin',
             'posts_by_date_setting_section',
@@ -166,7 +166,7 @@ class PostsByDate
         );
         add_settings_field(
             'order_4',
-            'Order',
+            __('Order', 'posts-by-date'),
             array($this, 'order_4_callback'),
             'posts-by-date-admin',
             'posts_by_date_setting_section',
@@ -205,7 +205,7 @@ class PostsByDate
 
     public function posts_by_date_section_info()
     {
-        echo  '<h4 class="text-muted mb-4">Choose Your shortcode settings here:</h4>';
+        echo  '<h4 class="text-muted mb-4">'.__('Choose Your shortcode settings here', 'posts-by-date').':</h4>';
     }
 
     public function category_0_callback()
@@ -220,7 +220,7 @@ class PostsByDate
                 <option value="<?= $category->slug ?>" <?php echo $selected; ?>><?= $category->name ?></option>
                 <?php endforeach; ?>
             </select>
-            <p class="small">Posts Specific category.</p>
+            <p class="small"><?= __('Posts Specific category.', 'posts-by-date') ?></p>
     </div>
     <?php
     }
@@ -232,7 +232,7 @@ class PostsByDate
             '<input class="form-control" type="date" name="posts_by_date_option_name[date_1]" id="date_1" value="%s">',
             isset($this->posts_by_date_options['date_1']) ? esc_attr($this->posts_by_date_options['date_1']) : ''
         );
-        echo '<p class="small">Posts Specific Date.</p>';
+        echo '<p class="small">'. __('Posts Specific Date.', 'posts-by-date').'</p>';
         echo '</div>';
     }
 
@@ -243,7 +243,7 @@ class PostsByDate
             '<input class="form-control" type="number" name="posts_by_date_option_name[limit_2]" id="limit_2" value="%s" min="-1">',
             isset($this->posts_by_date_options['limit_2']) ? esc_attr($this->posts_by_date_options['limit_2']) : ''
         );
-        echo '<p class="small">Post\'s Counts (Choose "-1" for unlimited posts).</p>';
+        echo '<p class="small">'.__('Post\'s Counts (Choose "-1" for unlimited posts).', 'posts-by-date').'</p>';
         echo '</div>';
     }
     public function orderby_3_callback()
@@ -253,15 +253,15 @@ class PostsByDate
         <select name="posts_by_date_option_name[orderby_3]" id="orderby_3" class="form-select" aria-label="Order By Selector">
             <option value=""></option>
             <?php $selected = (isset($this->posts_by_date_options['orderby_3']) && $this->posts_by_date_options['orderby_3'] === 'none') ? 'selected' : ''; ?>
-            <option value="none" <?php echo $selected; ?>>No Ordering</option>
+            <option value="none" <?php echo $selected; ?>><?= __('No Ordering', 'posts-by-date') ?></option>
             <?php $selected = (isset($this->posts_by_date_options['orderby_3']) && $this->posts_by_date_options['orderby_3'] === 'title') ? 'selected' : ''; ?>
-            <option value="title" <?php echo $selected; ?>>Order By Post Title</option>
+            <option value="title" <?php echo $selected; ?>><?= __('Order By Post Title', 'posts-by-date') ?></option>
             <?php $selected = (isset($this->posts_by_date_options['orderby_3']) && $this->posts_by_date_options['orderby_3'] === 'date') ? 'selected' : ''; ?>
-            <option value="date" <?php echo $selected; ?>>Order By Post Date</option>
+            <option value="date" <?php echo $selected; ?>><?= __('Order By Post Date', 'posts-by-date') ?></option>
             <?php $selected = (isset($this->posts_by_date_options['orderby_3']) && $this->posts_by_date_options['orderby_3'] === 'rand') ? 'selected' : ''; ?>
-            <option value="rand" <?php echo $selected; ?>>Random Order</option>
+            <option value="rand" <?php echo $selected; ?>><?= __('Random Order', 'posts-by-date') ?></option>
         </select>
-        <p class="small">Posts Order Pattern.</p>
+        <p class="small"><?= __('Posts Order Pattern.', 'posts-by-date') ?></p>
     </div>
         <?php
     }
@@ -272,11 +272,11 @@ class PostsByDate
         <select name="posts_by_date_option_name[order_4]" id="order_4" class="form-select" aria-label="Order Sorting Selector">
             <option value=""></option>
             <?php $selected = (isset($this->posts_by_date_options['order_4']) && $this->posts_by_date_options['order_4'] === 'asc') ? 'selected' : ''; ?>
-            <option value="asc" <?php echo $selected; ?>>Ascending</option>
+            <option value="asc" <?php echo $selected; ?>><?= __('Ascending', 'posts-by-date') ?></option>
             <?php $selected = (isset($this->posts_by_date_options['order_4']) && $this->posts_by_date_options['order_4'] === 'desc') ? 'selected' : ''; ?>
-            <option value="desc" <?php echo $selected; ?>>Descending</option>
+            <option value="desc" <?php echo $selected; ?>><?= __('Descending', 'posts-by-date') ?></option>
         </select>
-        <p class="small">Posts Sorting Pattern.</p>
+        <p class="small"><?= __('Posts Sorting Pattern.', 'posts-by-date') ?></p>
     </div>
         <?php
     }
