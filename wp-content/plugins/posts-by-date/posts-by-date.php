@@ -19,20 +19,20 @@ class PostsByDate
     public $plugin_dir = WP_PLUGIN_DIR.'/posts-by-date';
     public function __construct()
     {
-        add_action('admin_menu', array($this, 'posts_by_date_add_plugin_page'));
-        add_action('admin_init', array($this, 'posts_by_date_page_init'));
-        add_action('init', array($this, 'posts_by_date_enqueue_scripts'));
+        if (is_admin()) {
+            add_action('admin_menu', array($this, 'posts_by_date_add_plugin_page'));
+            add_action('admin_init', array($this, 'posts_by_date_page_init'));
+            add_action('init', array($this, 'posts_by_date_enqueue_scripts'));
+        }
     }
 
     public function posts_by_date_enqueue_scripts()
     {
-        if (is_admin()) {
             wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',false, '5.1.3', 'all');
             wp_enqueue_style('bootstrap-icons', 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css',false, '1.7.0', 'all');
             wp_enqueue_style('posts-by-date', plugin_dir_url( __FILE__ ) .'assets/css/posts-by-date.css',false, time(), 'all');
             wp_enqueue_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js', array('jquery'), '5.1.3', true);
             wp_enqueue_script('posts-by-date', plugin_dir_url( __FILE__ ) .'assets/js/posts-by-date.js', array('jquery', 'jquery-ui-core', 'jquery-ui-slider', 'jquery-ui-spinner'), time(), true);
-        }
     }
 
     public function posts_by_date_add_plugin_page()
