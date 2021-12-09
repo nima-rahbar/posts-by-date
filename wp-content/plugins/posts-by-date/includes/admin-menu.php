@@ -5,7 +5,7 @@ class AdminMenu extends PostsByDate
     {
         add_action('admin_menu', array($this, 'posts_by_date_add_plugin_page'));
         add_action('admin_init', array($this, 'posts_by_date_page_init'));
-        add_action('init', array($this, 'posts_by_date_enqueue_scripts'));
+        add_action('admin_init', array($this, 'posts_by_date_enqueue_scripts_admin'));
     }
     public function posts_by_date_add_plugin_page()
     {
@@ -213,7 +213,7 @@ class AdminMenu extends PostsByDate
         echo '<div class="mb-3">';
         printf(
             '<input class="form-control" type="number" name="posts_by_date_option_name[limit_2]" id="limit_2" value="%s" min="-1">',
-            isset($this->posts_by_date_options['limit_2']) ? esc_attr($this->posts_by_date_options['limit_2']) : ''
+            isset($this->posts_by_date_options['limit_2']) ? esc_attr($this->posts_by_date_options['limit_2']) : '5'
         );
         echo '<p class="small">' . __('Post\'s Counts (Choose "-1" for unlimited posts).', 'posts-by-date') . '</p>';
         echo '</div>';
