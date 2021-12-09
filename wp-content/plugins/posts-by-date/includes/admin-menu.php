@@ -253,3 +253,6 @@ class AdminMenu extends PostsByDate
 <?php
     }
 }
+if (is_admin()) {
+    $admin_menu = new AdminMenu();
+}

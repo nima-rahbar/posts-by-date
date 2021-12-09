@@ -16,8 +16,10 @@ class PostsByDate
 {
     public function __construct()
     {
-        add_action('init', array($this, 'posts_by_date_enqueue_scripts'));
-        add_shortcode('posts_by_date', array($this, 'posts_by_date_shortcode'));
+        if(!is_admin()){
+            add_action('init', array($this, 'posts_by_date_enqueue_scripts'));
+            add_shortcode('posts_by_date', array($this, 'posts_by_date_shortcode'));
+        }
     }
 
     public function posts_by_date_enqueue_scripts_admin()
@@ -39,7 +41,7 @@ class PostsByDate
             array(
                 'category' => '',
                 'date' => '',
-                'limit' => '5',
+                'limit' => '',
             ),
             $atts,
             'posts_by_date'
@@ -84,10 +86,10 @@ class PostsByDate
                 $o .= '</ul></li>';
             }
             $o .= '</ol>';
+            wp_reset_postdata();
             // if($posts->found_posts > $limit){
             //     $o .= '<button id="load-more" data-page="1">Load More!</button>';
             // }
-            wp_reset_postdata();
         }else{
             return 'There is no post with your settings in our Database.';
         }
@@ -95,7 +97,4 @@ class PostsByDate
     }
 }
 require_once plugin_dir_path(__FILE__) . 'includes' . DIRECTORY_SEPARATOR . 'admin-menu.php';
-if (is_admin()) {
-    $admin_menu = new AdminMenu();
-}
 $pbd = new PostsByDate();
