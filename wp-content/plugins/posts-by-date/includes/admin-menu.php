@@ -5,7 +5,7 @@ class AdminMenu extends PostsByDate
     {
         add_action('admin_menu', array($this, 'posts_by_date_add_plugin_page'));
         add_action('admin_init', array($this, 'posts_by_date_page_init'));
-        add_action('admin_init', array($this, 'posts_by_date_enqueue_scripts_admin'));
+        add_action('admin_enqueue_scripts', array($this, 'posts_by_date_enqueue_scripts_admin'));
     }
     public function posts_by_date_add_plugin_page()
     {
